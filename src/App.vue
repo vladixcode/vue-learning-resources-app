@@ -1,8 +1,8 @@
 <script setup>
 import { reactive } from 'vue'
 
-// import LearningResource from '@/components/LearningResources/LearningResource.vue'
 import StoredResources from '@/components/LearningResources/StoredResources.vue'
+import TheHeader from '@/components/Layouts/TheHeader.vue'
 
 // Dummy data
 const storedResourcesData = reactive([
@@ -22,6 +22,7 @@ const storedResourcesData = reactive([
 </script>
 
 <template>
+  <the-header title="Lifetime Learning Center"></the-header>
   <stored-resources :resources="storedResourcesData"></stored-resources>
 </template>
 
