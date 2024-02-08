@@ -1,10 +1,11 @@
 <script setup>
 import { reactive } from 'vue'
 
-import LearningResource from '@/components/LearningResources/LearningResource.vue'
+// import LearningResource from '@/components/LearningResources/LearningResource.vue'
+import StoredResources from '@/components/LearningResources/StoredResources.vue'
 
 // Dummy data
-const storedResources = reactive([
+const storedResourcesData = reactive([
   {
     id: 1,
     title: 'Official Guide',
@@ -21,15 +22,21 @@ const storedResources = reactive([
 </script>
 
 <template>
-  <ul>
-    <learning-resource
-      v-for="resource in storedResources"
-      :key="resource.id"
-      :title="resource.title"
-      :description="resource.description"
-      :link="resource.link"
-    ></learning-resource>
-  </ul>
+  <stored-resources :resources="storedResourcesData"></stored-resources>
 </template>
 
-<style scoped></style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
