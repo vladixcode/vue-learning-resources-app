@@ -17,13 +17,13 @@ const tabComponent = computed(() => {
 // Dummy data
 const storedResourcesData = reactive([
   {
-    id: 1,
+    id: 'official-guide',
     title: 'Official Guide',
     description: 'The official Vue.js documentation',
     link: 'https://vuejs.org/',
   },
   {
-    id: 2,
+    id: 'google',
     title: 'Google',
     description: 'Learn to google...',
     link: 'https://www.google.com/',
@@ -52,6 +52,12 @@ const addResources = ({ title, description, link }) => {
   selectedTab.value = 'stored-resources'
 }
 provide('addResource', addResources)
+
+const removeResource = (id) => {
+  const resourceIndex = storedResourcesData.findIndex((resource) => resource.id === id)
+  storedResourcesData.splice(resourceIndex, 1)
+}
+provide('removeResource', removeResource)
 </script>
 
 <template>
