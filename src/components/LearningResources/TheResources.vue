@@ -7,7 +7,6 @@ import AddLearningResource from './AddLearningResource.vue'
 const selectedTab = ref('stored-resources')
 
 const setSelectedTab = (tab) => {
-  console.log('setSelectedTab', tab)
   selectedTab.value = tab
 }
 
@@ -40,6 +39,19 @@ const storedResourcesButtonMode = computed(() => {
 const addResourcesButtonMode = computed(() => {
   return selectedTab.value === 'add-resources' ? null : 'flat'
 })
+
+const addResources = ({ title, description, link }) => {
+  const newResource = {
+    id: new Date().toISOString(),
+    title,
+    description,
+    link,
+  }
+
+  storedResourcesData.unshift(newResource)
+  selectedTab.value = 'stored-resources'
+}
+provide('addResource', addResources)
 </script>
 
 <template>
@@ -51,5 +63,7 @@ const addResourcesButtonMode = computed(() => {
       >Add Resource</base-button
     >
   </base-card>
-  <component :is="tabComponent"></component>
+  <keep-alive>
+    <component :is="tabComponent"></component>
+  </keep-alive>
 </template>

@@ -1,10 +1,6 @@
 <script setup>
 import { computed } from 'vue'
 const props = defineProps({
-  buttonType: {
-    type: String,
-    default: 'button',
-  },
   mode: {
     type: String,
     default: '',
@@ -15,7 +11,7 @@ const buttonClass = computed(() => ({ [props.mode]: true }))
 </script>
 
 <template>
-  <button :type="buttonType" :class="buttonClass">
+  <button :class="buttonClass">
     <slot></slot>
   </button>
 </template>
