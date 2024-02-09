@@ -4,6 +4,7 @@ const titleInput = ref()
 const descriptionInput = ref()
 const linkInput = ref()
 
+const formIsValid = ref(true)
 const addResource = inject('addResource')
 const submitData = () => {
   // Form basic validation
@@ -12,7 +13,7 @@ const submitData = () => {
     descriptionInput.value.value.trim() === '' ||
     linkInput.value.value.trim() === ''
   ) {
-    alert('Form data invalid')
+    formIsValid.value = false
     return
   }
   addResource({
@@ -21,9 +22,20 @@ const submitData = () => {
     link: linkInput.value.value,
   })
 }
+
+const confirmDialog = () => (formIsValid.value = true)
 </script>
 
 <template>
+  <base-dialog v-if="!formIsValid" title="Invalid input" @close="confirmDialog">
+    <template #default>
+      <p>Form is invalid</p>
+      <p>Every input field is mandatory</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmDialog">Ok</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
