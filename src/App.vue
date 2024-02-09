@@ -1,29 +1,11 @@
 <script setup>
-import { reactive } from 'vue'
-
-import StoredResources from '@/components/LearningResources/StoredResources.vue'
 import TheHeader from '@/components/Layouts/TheHeader.vue'
-
-// Dummy data
-const storedResourcesData = reactive([
-  {
-    id: 1,
-    title: 'Official Guide',
-    description: 'The official Vue.js documentation',
-    link: 'https://vuejs.org/',
-  },
-  {
-    id: 2,
-    title: 'Google',
-    description: 'Learn to google...',
-    link: 'https://www.google.com/',
-  },
-])
+import TheResources from './components/LearningResources/TheResources.vue'
 </script>
 
 <template>
   <the-header title="Lifetime Learning Center"></the-header>
-  <stored-resources :resources="storedResourcesData"></stored-resources>
+  <the-resources></the-resources>
 </template>
 
 <style>
